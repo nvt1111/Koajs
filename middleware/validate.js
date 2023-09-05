@@ -1,20 +1,18 @@
-// const yup = require('yup');
 import * as yup from 'yup';
 
 export default async function validateProduct(ctx, next) {
     try {
-        const postData = ctx.request.body;
+        const data = ctx.request.body;
         let schema = yup.object().shape({
-            id: yup.number().positive().integer().required(),
             name: yup.string().required(),
             price: yup.number().positive().required(),
             description: yup.string(),
             product: yup.string(),
-            createdAt: yup.date().required(),
+            createdAt: yup.date(),
             image: yup.string().url().required()
         });
 
-        await schema.validate(postData);
+        await schema.validate(data);
         next();
     } catch (e) {
         ctx.status = 400;
@@ -28,5 +26,3 @@ export default async function validateProduct(ctx, next) {
 
 }
 
-
-// module.exports = validateProduct;

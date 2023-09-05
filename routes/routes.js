@@ -1,22 +1,17 @@
-// const Router = require('koa-router');
-// const productHandler = require('../handlers/productHandler')
-// const validateProduct = require('../middleware/validate')
 import Koa from 'koa';
 import Router from 'koa-router';
 import productHandler from '../handlers/productHandler.js';
 import validateProduct from '../middleware/validate.js';
 
-
 const router = new Router({
     prefix: '/api'
 });
 
-router.get('/product', productHandler.handelGetProduct);
-router.get('/product/:id', productHandler.getProByID);
-router.delete('/delProduct/:id', productHandler.deleteProduct);
-router.post('/product', validateProduct, productHandler.creatProduct);
+router.get('/products', productHandler.handelGetProduct);
+router.post('/products', validateProduct, productHandler.createProduct);
 router.put('/product/:id', validateProduct, productHandler.updateProduct);
+router.delete('/product/:id', productHandler.deleteProduct);
+router.get('/product/:id', productHandler.getProductByID);
 
-// module.exports = router;
 export default router
 
