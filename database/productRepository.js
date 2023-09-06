@@ -22,6 +22,8 @@ export function getProducts({ sort = "asc", limit }) {
 export function getOne(id, fieldUrl) {
     const product = products.find(pro => pro.id === (id));
 
+
+    //todo: thường thì mình sẽ đặt tên là fields và nó có dạng array . + viết ra 1 hàm riêng nhé để có thể sử dụng nhiều lần 
     if (fieldUrl) {
         const field = fieldUrl.split(',');
 
