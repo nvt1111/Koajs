@@ -1,5 +1,6 @@
 import fs from 'fs';
 import sortProduct from '../helpers/sortData.js';
+import fieldData from '../helpers/fieldData.js';
 import { writeFileSync, readFileSync } from '../helpers/writeAndReadFileSync.js';
 
 
@@ -19,26 +20,12 @@ export function getProducts({ sort = "asc", limit }) {
     return product;
 }
 
-export function getOne(id, fieldUrl) {
+export function getOne(id, fields) {
     const product = products.find(pro => pro.id === (id));
 
-
-    //todo: thường thì mình sẽ đặt tên là fields và nó có dạng array . + viết ra 1 hàm riêng nhé để có thể sử dụng nhiều lần 
-    if (fieldUrl) {
-        const field = fieldUrl.split(',');
-
-        const productOne = {};
-
-        field.forEach(field => {
-            if (product[field] !== undefined) {
-
-                productOne[field] = product[field];
-            }
-        })
-        return productOne
-
+    if (fields) {
+        return fieldData(product, fields)
     } else {
-
         return product;
     }
 }
