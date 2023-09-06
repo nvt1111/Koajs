@@ -2,11 +2,7 @@ import {
     getOne, getProducts, add,
     updateById, deleteById,
 } from '../database/productRepository.js';
-import fs from 'fs';
 
-const testdata = fs.readFileSync('./database/products.json', 'utf-8');
-const productData = JSON.parse(testdata);//Object
-const products = productData.data;
 
 const handelGetProduct = (ctx) => {
     try {
@@ -79,32 +75,13 @@ const createProduct = async (ctx) => {
 
 const getProductById = (ctx) => {
     try {
-        const product = getOne(ctx.params.id);
+        const fieldUrl = ctx.query.fields || undefined;
+        const id = ctx.params.id;
+        const product = getOne(id, fieldUrl);
 
-        const fieldUrl = ctx.query.fields;
-
-        console.log(fieldUrl);
-
-        if (fieldUrl) {
-            const field = fieldUrl.split(',');
-
-            const productOne = {};
-
-            field.forEach(field => {
-                if (product[field] !== undefined) {
-
-                    productOne[field] = product[field];
-                }
-            })
-
-            ctx.body = {
-                data: productOne
-            };
-        } else {
-            ctx.body = {
-                data: product
-            };
-        }
+        ctx.body = {
+            data: product
+        };
 
     } catch (e) {
         ctx.status = 404;

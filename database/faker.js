@@ -3,7 +3,7 @@ import { faker } from '@faker-js/faker';
 
 function createRandomProduct() {
     return {
-        id: faker.datatype.number(),
+        id: faker.datatype.number().toString(),
         name: faker.commerce.productName(),
         price: faker.commerce.price(),
         description: faker.lorem.sentence(),
