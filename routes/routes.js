@@ -11,8 +11,7 @@ router.get('/products', productHandler.handelGetProduct);
 router.post('/products', validateProduct, productHandler.createProduct);
 router.put('/product/:id', validateProduct, productHandler.updateProduct);
 router.delete('/product/:id', productHandler.deleteProduct);
-//todo: Id thôi không dùng ID nhé
-router.get('/product/:id', productHandler.getProductByID);
+router.get('/product/:id', productHandler.getProductById);
 
 export default router
 

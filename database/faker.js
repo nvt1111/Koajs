@@ -1,6 +1,3 @@
-// const fs = require('fs');
-// const { faker } = require('@faker-js/faker');
-
 import fs from 'fs';
 import { faker } from '@faker-js/faker';
 
