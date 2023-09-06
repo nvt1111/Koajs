@@ -20,7 +20,7 @@ export function getProducts({ sort = "asc", limit }) {
     return product;
 }
 
-export function getOne(id, fields) {
+export function getOne(id, fields=[]) {
     const product = products.find(pro => pro.id === (id));
 
     if (fields) {

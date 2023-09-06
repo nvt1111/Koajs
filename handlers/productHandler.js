@@ -28,9 +28,7 @@ const handelGetProduct = (ctx) => {
 const deleteProduct = (ctx) => {
     try {
         const id = ctx.params.id;
-
         deleteById(id);
-
         ctx.body = {
             success: true,
             message: `Product with ID ${id} has been deleted`
@@ -47,6 +45,8 @@ const deleteProduct = (ctx) => {
 
 const createProduct = async (ctx) => {
     try {
+
+        //todo: xử lý bên trong repo
         const timestamp = new Date().getTime(); // Lấy timestamp
 
         const randomValue = Math.floor(Math.random() * 1000); // Số ngẫu nhiên
