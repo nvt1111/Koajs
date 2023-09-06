@@ -46,22 +46,14 @@ const deleteProduct = (ctx) => {
 const createProduct = async (ctx) => {
     try {
 
-        //todo: xử lý bên trong repo
-        const timestamp = new Date().getTime(); // Lấy timestamp
+        const data = ctx.request.body
 
-        const randomValue = Math.floor(Math.random() * 1000); // Số ngẫu nhiên
+        add(data);
 
-        const idProduct = `${timestamp}${randomValue}`;
-
-        const createdAt = new Date().toISOString();
-
-        const product = { id: idProduct, createdAt, ...ctx.request.body };
-
-        add(product);
         ctx.body = {
             success: true,
-            message: `Product with ID ${product.id} has been created`,
-            product
+            message: `Product with ID ${data.id} has been created`,
+            data
         };
     } catch (e) {
         ctx.status = 404;
@@ -75,12 +67,13 @@ const createProduct = async (ctx) => {
 
 const getProductById = (ctx) => {
     try {
-        const fieldUrl = ctx.query.fields || undefined;
-        const id = ctx.params.id;
-        const product = getOne(id, fieldUrl);
+        const fields = ctx.query.fields;
+        const { id } = ctx.params;
+        const data = getOne({ id, fields });
+        console.log(data);
 
         ctx.body = {
-            data: product
+            data: data
         };
 
     } catch (e) {

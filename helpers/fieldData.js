@@ -1,13 +1,11 @@
-const fieldData = (object, fields) => {
-    const fieldUrl = fields.split(',');
-    const objectNew = {};
-    fieldUrl.forEach(field => {
-        if (object[field]) {
-            objectNew[field] = object[field]
+
+export default function pickFields(data, fields) {
+    // example: fields = [id, name, description]
+    const fieldsObj = fields.reduce((prev, key) => {
+        if (data[key]) {
+            prev[key] = data[key];
         }
-
-    });
-    return objectNew;
+        return prev;
+    }, {});
+    return fieldsObj;
 }
-
-export default fieldData;

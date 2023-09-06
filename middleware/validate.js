@@ -13,7 +13,7 @@ export default async function validateProduct(ctx, next) {
         });
 
         await schema.validate(data);
-        next();
+        return next();
     } catch (e) {
         ctx.status = 400;
         ctx.body = {
