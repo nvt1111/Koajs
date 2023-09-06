@@ -23,6 +23,8 @@ const productList = async (ctx) => {
     }
 }
 
+//todo: phần này đẩy vào xử lí trong repository nhé không 
+
 const sortProduct = (ctx, next) => {
     try {
         const sortedProducts = [...products];
@@ -70,10 +72,15 @@ const sortAndLimitProduct = (ctx, next) => {
         };
     }
 }
+
+//todo: viết cách ra cho dễ đọc nhé , chưa dùng next thì chưa cần truyền vào đâu nó thành thừa đất 
+//try catch ở hàm này luôn các hàm ở trong chuyển vào xử lí bên trong repository nhé và chỉ cần viết 1 hàm thôi không biết quà nhiều hàm thế kia đâu 
 const handelGetProduct = (ctx, next) => {
     const limit = parseInt(ctx.query.limit);
     const sort = ctx.query.sort;
 
+    //todo : không viết như này nhé, tách ra từng hàm if riêng chứ không dùng if else thế này , dễ bị sót trường hợp
+    // và không viết !limit chứ không viết limit !== undefined nhé  
     if (limit !== undefined) {
         productList(ctx);
     } else if (sort !== undefined) {
